@@ -1,0 +1,24 @@
+package dc;
+
+import java.io.IOException;
+
+public class Convert {		
+		public static String convert(String inputFile) throws IOException
+		{
+			
+			long starttime=System.currentTimeMillis();
+			Runtime rt = Runtime.getRuntime();
+			String outPath= "/home/shruti/Concord/application/WebApp/WebContent/web/output";
+			// conversion from docx to pdf
+			Process pr = rt.exec("libreoffice5.0 --headless --convert-to pdf --outdir "+outPath+" "+inputFile);
+			
+			long endtime=System.currentTimeMillis();
+			
+			System.out.println("docx to pdf takes "+(endtime-starttime) + " millisec");
+			
+			double currentMemory = ((double)((double)(Runtime.getRuntime().totalMemory()/1024)/1024))- ((double)((double)(Runtime.getRuntime().freeMemory()/1024)/1024));
+			
+			System.out.println("memory usage in MB is "+currentMemory);
+			return outPath;
+		}
+	}
